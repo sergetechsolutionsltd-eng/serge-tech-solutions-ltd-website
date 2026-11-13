@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Serge Tech Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #101d35;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            width: 85%;
+            max-width: 380px;
+            box-shadow: 0 5px 25px #0005;
+        }
+        h2 { color: #12366a; text-align: center; }
+        p { text-align: center; color: #555; }
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 13px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #12366a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .error { color: #b00020; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>SERGE TECH SOLUTIONS LTD</h2>
+        <p>Administrator Login</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <p class="error">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('admin_login_post') }}">
+            <input type="text" name="username"
+                   placeholder="Administrator Username" required>
+
+            <input type="password" name="password"
+                   placeholder="Password" required>
+
+            <button type="submit">LOGIN</button>
+        </form>
+    </div>
+</body>
+</html>
